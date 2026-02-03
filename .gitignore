@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+data/part1/*
+data/part2/*
+!data/part1/ .gitkeep
+!data/part2/ .gitkeep
+.DS_Store
