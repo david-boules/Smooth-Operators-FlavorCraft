@@ -3,97 +3,73 @@ AI-powered menu optimization platform that leverages the FlavorCraft data to gen
 
 ---
 
-## Table of Contents
-- [Overview](#overview)
-- [Team & Contributions](#team--contributions)
-- [Solution Components](#solution-components)
-  - [Menu Description Optimization](#menu-description-optimization)
-  - [Additional Solutions](#additional-solutions)
-- [Installation & Setup](#installation--setup)
-- [Usage](#usage)
-- [Technical Stack](#technical-stack)
+## 📖 Table of Contents
+- [Executive Summary](#-executive-summary)
+- [Team & Contributions](#-team--contributions)
+- [Project Architecture](#-project-architecture)
+  - [1. Behavioral Analytics (Data)](#1-behavioral-analytics-data)
+  - [2. Menu Matrix Classification (ML)](#2-menu-matrix-classification-ml)
+  - [3. Price Optimization (Math)](#3-price-optimization-math)
+  - [4. Semantic Optimization (AI)](#4-semantic-optimization-ai)
+  - [5. The "Menu Doctor" System (Engineering)](#5-the-menu-doctor-system-engineering)
+- [Installation & Usage](#-installation--usage)
+- [Technical Stack](#-technical-stack)
+  
 
 ---
 
-## Overview
+## 🚀 Executive Summary
 
-Smooth Operators presents an integrated menu optimization platform addressing multiple business challenges for FlavorCraft:
-- Menu description optimization (wording and sales impact)
-- [Additional business questions to be documented by team]
+**Smooth Operators** solves the disconnect between *analyzing* a menu and *fixing* it. We built a unified platform that integrates customer behavior patterns, mathematical price optimization, and Generative AI to autonomously re-engineer FlavorCraft's menu.
 
-This repository contains our complete solution architecture, analysis pipelines, and interactive demonstration tools.
-
----
-
-## Team & Contributions
-
-**Team Name:** Smooth Operators  
-**Hackathon:** Deloitte x AUC 2026
-
-### Team Members & Roles
-- **[Name]** - Menu Description Optimization (AI/ML & Data Analysis)
-- **[Name]** - [Business Question] (Role)
-- **[Name]** - [Business Question] (Role)
+Our solution answers four critical business questions through a multi-disciplinary approach:
+1.  **Diagnostics:** Identifying hidden customer buying patterns.
+2.  **Classification:** Categorizing items into Stars, Plowhorses, Puzzles, and Dogs.
+3.  **Optimization:** Mathematically determining the perfect price point.
+4.  **Action:** Using AI to rewrite descriptions for maximum conversion.
 
 ---
 
-## Solution Components
+Our team operated as a specialized Menu Engineering department, with each member leading a specific technical domain:
 
-### Menu Description Optimization
+| Team Member | Role | Key Contribution |
+|:-----------|:-----|:------------------|
+| **Wassim** | **Data Analysis Lead** | • **Hidden Patterns:** Conducted deep-dive segmentation to find "Whale" customers and basket affinities.<br>• Uncovered the "Loyalty Gap" and purchasing triggers. |
+| **Basel Morsy** | **ML Engineer** | • **Menu Matrix:** Built the classification engine that segments items into *Stars, Plowhorses, Puzzles,* and *Dogs*.<br>• Worked with Marwan to design the logic for "Promote, Re-engineer, Eliminate" decisions. |
+| **Abdelrahman** | **Mathematical Modeler** | • **Profitability Logic:** Developed the mathematical models to adjust pricing for maximum margin without sacrificing volume.<br>• Calculated price elasticity and optimal price points. |
+| **David Boules** | **AI Researcher** | • **Semantic Analysis:** Analyzed thousands of menu descriptions to quantify the impact of specific words (e.g., "Organic" = +122% lift).<br>• Defined the "Power Words" for the AI to use. |
+| **Marwan** | **AI Engineering Lead** | • **Generative System:** Architected the LLM agent that ingests the insights from Basel and David to autonomously rewrite the menu.<br>• Built the "Menu Doctor" persona and prompt engineering. |
+| **Yaseen** | **Full Stack Engineer** | • **System Integration:** Built the unified Streamlit interface that links all Python files and SQL queries.<br>• Created the seamless user experience connecting Data, ML, and AI modules. |
 
-**Business Question:** *What wording or descriptions increase menu item sales?*
+---
 
-**Approach:** Hybrid statistical analysis + LLM-powered intelligent agent
+## 🏗 Project Architecture (Solution Components)
 
-#### Key Findings
+### 1. Behavioral Analytics (Data)
+**Owner: Wassim** *The Foundation.* Before changing anything, we analyzed 42.6M DKK of transaction data to understand *who* is buying.
+* **Key Insight:** Detected "Cannibalization" where low-margin items steal sales from premium ones.
+* **Basket Affinity:** Mapped which items are frequently bought together to drive bundle recommendations.
 
-We analyzed 10,945 active menu items (42.6M DKK total revenue) to identify description features that drive sales performance:
+### 2. Menu Matrix Classification (ML)
+**Owner: Basel Morsy** *The Triage.* This module ingests sales and cost data to categorize every menu item:
+* 🐕 **Dogs:** Low Profit / Low Popularity → *Action: Eliminate.*
+* 🧩 **Puzzles:** High Profit / Low Popularity → *Action: Re-engineer (Marketing).*
+* 🐴 **Plowhorses:** Low Profit / High Popularity → *Action: Price Increase.*
+* ⭐ **Stars:** High Profit / High Popularity → *Action: Promote.*
 
-| Feature | Impact | Items Analyzed | Key Insight |
-|---------|--------|----------------|-------------|
-| Dietary Labels (vegan, organic) | +122% lift | 18 items | Massive untapped opportunity |
-| Flavor Descriptors (chocolate, vanilla) | +60% lift | 22 items | Strong performance in beverages |
-| Special/Unique Names | +32% lift | 10,288 items | Creative names outperform generic |
-| Size Indicators (small, large) | -50% impact | 84 items | Negative connotation |
-| Combo Descriptions (lists) | -49% impact | 576 items | Causes decision fatigue |
+### 3. Price Optimization (Math)
+**Owner: Abdelrahman** *The Revenue Engine.* For "Plowhorses" (items that sell well but lose money), this module calculates the exact price increase needed to flip them into "Stars" using elasticity modeling.
 
-#### Real-World Examples
+### 4. Semantic Optimization (AI)
+**Owner: David Boules** *The Psychology.* We didn't just guess what words work; we proved it.
+* **Discovery:** Identified that "Size" indicators (e.g., "Small Latte") negatively impact sales by -50%.
+* **Strategy:** Replacing size indicators with "Experience" descriptors (e.g., "Classic Latte") maximizes conversion.
 
-**Case 1: The "Small Latte" Problem**
-- Current: "Small Latte" - 413 purchases @ 38 DKK
-- Benchmark: "Latte" - 4,426 purchases @ 47 DKK (10x performance)
-- Comparable: "Iced latte" - 1,631 purchases @ 52 DKK
-- **Recommendation:** "Iced Latte" (expected +60% lift)
-- **Reasoning:** Remove negative "small" indicator, add successful temperature modifier
-- **Revenue Impact:** +18,678 DKK per period (119% ROI, zero implementation cost)
+### 5. The "Menu Doctor" System (Engineering)
+**Owners: Marwan (AI) & Yaseen (Integration)** *The Solution.* This is the interactive application where it all comes together.
+* **The AI Agent:** Marwan built a Gemini-powered agent that takes a "Puzzle" item and rewrites it using David's semantic rules and Abdelrahman's pricing logic.
+* **The Interface:** Yaseen built a robust Streamlit dashboard that allows store managers to visualize Basel's matrix and "Click-to-Fix" any failing menu item in real-time.
 
-**Case 2: Sandwich Protein Analysis** (all priced at 95 DKK)
-- "Chicken sandwich": 1,327 purchases (baseline)
-- "Salmon sandwich": 947 purchases (-29% vs chicken)
-- "Tofu sandwich": 593 purchases (-55% vs chicken)
-- **Insight:** Protein choice significantly impacts sales at identical price points
-
-#### Solution Architecture
-
-**Step 1: Statistical Discovery (`src/step1_category_analysis.py`)**
-- Categorizes 10,945 items into 10 intelligent categories
-- Extracts 7 linguistic features from menu titles
-- Performs comparative analysis within categories
-- Identifies 2,084 comparable item groups
-- Generates structured insights for ML pipeline
-
-**Step 2: Optimization Agent (`src/step2_optimization_agent.py`)**
-- Multi-layer validation system (prevents nonsense outputs)
-- Finds comparable high-performers in same category
-- Statistical baseline + optional LLM semantic understanding (Ollama)
-- Context-aware recommendations (coffee ≠ sandwiches ≠ desserts)
-- Confidence scoring and lift estimation
-
-**Step 3: Interactive Demo (`src/step3_interactive_demo.py`)**
-- Streamlit web interface for live optimization
-- Real-time menu item analysis
-- Visual performance metrics and benchmarks
-- Multiple ranked recommendations with reasoning
 
 #### Technical Implementation
 
@@ -198,29 +174,6 @@ python main.py demo                            # Launch Streamlit
 
 ---
 
-### Additional Solutions
-
-[Space for teammates to document their business questions]
-
-#### [Business Question 2]
-[To be completed]
-
-#### [Business Question 3]
-[To be completed]
-
----
-
-## Installation & Setup
-
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
-
-### Dependencies
-```bash
-pip install -r requirements.txt
-```
-
 Required packages:
 - pandas >= 2.0.0
 - numpy >= 1.24.0
@@ -320,29 +273,18 @@ python main.py demo                                     # Launch web UI
 ## Project Structure
 
 ```
-Smooth-Operators-FlavorCraft/
-├── data/
-│   ├── part1/                          # Source data (not committed)
-│   ├── part2/
-│   │   └── dim_menu_items.csv         # Main dataset (not committed)
-│   ├── step1_processed_data.csv       # Generated: processed items
-│   ├── step1_insights.json            # Generated: insights
-│   └── step1_category_results.json    # Generated: category analysis
-│
-├── src/
-│   ├── step1_category_analysis.py     # Statistical discovery
-│   ├── step2_optimization_agent.py    # Optimization agent
-│   └── step3_interactive_demo.py      # Streamlit demo
-│
-├── main.py                             # CLI entry point
-├── requirements.txt                    # Python dependencies
-├── .gitignore                          # Git ignore rules
-└── README.md                          # This file
+## 📂 Repository Structure
+
+| Folder | Description |
+| :--- | :--- |
+| `src/frontend` | Streamlit UI components and tab layouts. |
+| `src/services` | Core business logic (Analytics, AI Optimizer, Database). |
+| `src/workflows` | The 3-step menu engineering pipeline. |
+| `notebooks/` | Exploratory Data Analysis (EDA) and initial findings. |
+| `tests/` | Unit and Integration tests for system reliability. |
+| `data/` | Raw transaction and menu datasets. |
+| `docs/` | Final Report PDF and Roadmap. |
 ```
-
----
-
-## Evaluation Criteria Alignment
 
 ### Technical Skills
 - Advanced data analysis and feature engineering
@@ -385,6 +327,26 @@ Smooth-Operators-FlavorCraft/
 - **Features Extracted:** 7 linguistic features per item
 - **Comparable Groups Found:** 2,084 groups for analysis
 - **Test Cases Validated:** 3 primary examples with strong results
+  
+---
+## 💻 Installation & Usage
+
+### Prerequisites
+* Python 3.10+
+* Google Gemini API Key
+
+### Setup
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Configure Environment
+# Rename .env.example to .env and add your GEMINI_API_KEY
+
+
+### Dependencies
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
