@@ -39,7 +39,7 @@ def load_partner_demo():
     """
     try:
         # Import the function we just created in Step 1
-        from src.step3_interactive_demo import render_sales_tab
+        from src.workflows.step3_interactive_demo import render_sales_tab
         render_sales_tab()
     except ImportError as e:
         st.error(f" Import Error: Could not load src/step3_interactive_demo.py\nDetails: {e}")
