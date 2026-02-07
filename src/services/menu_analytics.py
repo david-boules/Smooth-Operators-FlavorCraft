@@ -90,3 +90,35 @@ class MenuAnalyzer:
         with self.engine.connect() as conn:
             result = conn.execute(text(query))
             return [str(row[0]) for row in result]
+        
+    def get_category_breakdown(self, store_filter=None):
+        """
+        Step 1: Returns high-level performance metrics by Menu Section.
+        """
+        params = {}
+        sql = """
+            SELECT 
+                COALESCE(s.title, 'Uncategorized') as category,
+                COUNT(f.id) as total_items_sold,
+                SUM(f.price) as total_revenue,
+                AVG(f.price) as avg_price
+            FROM fct_order_items f
+            JOIN dim_menu_items m ON f.item_id = m.id
+            LEFT JOIN dim_sections s ON m.section_id = s.id
+        """
+        
+        # Add Location Filter if needed
+        if store_filter and store_filter != 'All':
+            sql += """
+            JOIN fct_payments p ON TRIM(CAST(p.payment_for_id AS VARCHAR)) = TRIM(CAST(f.order_id AS VARCHAR))
+            WHERE TRIM(CAST(p.place_id AS VARCHAR)) = :store_id
+            """
+            params['store_id'] = store_filter
+
+        sql += """
+            GROUP BY s.title
+            ORDER BY total_revenue DESC
+        """
+        
+        with self.engine.connect() as conn:
+            return pd.read_sql(text(sql), conn, params=params)
